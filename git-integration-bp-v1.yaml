@@ -1,0 +1,27 @@
+name: paulina-bp-test
+version: v1
+description: Testing Cloud Agnostic
+inputs:
+  count01:
+    type: integer
+    default: 1
+    maximum: 2
+    minimum: 0
+    title: Agnostic Machine Cluster Size
+    description: Cluster Size (Number of nodes)
+  deployment-name:
+    type: string
+    default: e2e-a8n-deployment
+    title: Deployment Name
+    description: Deployment Name tagged to resource
+resources:
+  VmCAOne:
+    type: Cloud.Machine
+    properties:
+      name: e2e-a8n-Tango
+      image: ubuntu
+      flavor: small
+      count: '${input.count01}'
+      tags:
+        - key: deployment-name
+          value: '${input.deployment-name}'
